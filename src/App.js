@@ -1,63 +1,60 @@
 import React, { useState } from 'react'
 import './App.css'
 
-function App() {
+function App () {
+  const [newItem, setNewItem] = useState('')
+  const [items, setItems] = useState([])
 
-  const [newItem, setNewItem] = useState('');
-  const [items, setItems] = useState([]);
+  const [showEdit, setShowEdit] = useState()
+  const [updatedText, setUpdatedText] = useState('')
 
-  const [showEdit, setShowEdit] = useState();
-  const [updatedText, setUpdatedText] = useState('');
-
-  function addItem() {
-
-    if (!newItem) {alert('Press enter an item.');
-      return;
+  function addItem () {
+    if (!newItem) {
+      alert('Press enter an item.')
+      return
     }
     const item = {
       id: Math.floor(Math.random() * 2137),
-      value: newItem,
-    };
+      value: newItem
+    }
 
-    setItems((prevList) => [...prevList, item]);
-    setNewItem('');
+    setItems((prevList) => [...prevList, item])
+    setNewItem('')
   }
 
+  function deleteItem (id) {
+    const newArray = items.filter((item) => item.id !== id)
+    setItems(newArray)
+  }
 
-  function deleteItem(id) {
-    const newArray = items.filter((item) => item.id !== id);
-    setItems(newArray); }
+  function editItem (id, newText) {
+    const currentItem = items.filter((item) => item.id === id)
 
-  function editItem(id, newText) {
-
-    const currentItem = items.filter((item) => item.id === id);
-
-    if(!updatedText){
-      alert('Press enter an item.');
-      return;
+    if (!updatedText) {
+      alert('Press enter an item.')
+      return
     }
 
     const updatedItem = {
       id: currentItem.id,
-      value: newText,
-    };
+      value: newText
+    }
 
-    deleteItem(id);
+    deleteItem(id)
 
-    setItems((prevList) => [...prevList, updatedItem]);
-    setUpdatedText('');
-    setShowEdit(0);
+    setItems((prevList) => [...prevList, updatedItem])
+    setUpdatedText('')
+    setShowEdit(0)
   }
 
-  function sth(){
-    setShowEdit(0);
-
+  function sth () {
+    setShowEdit(0)
   }
-  function taskLeft(){
-    if(items.length > 1){
-      return(<p>{items.length} Tasks left</p>)
-    }else{
-      return(<p>{items.length} Task left</p>)
+  function taskLeft () {
+    if (items.length > 1) {
+      return (<p>{items.length} Tasks left</p>)
+    } else {
+      return (<p>{items.length} Task left</p>)
     }
   }
 
@@ -79,8 +76,8 @@ function App() {
       <ul>
         {items.map((item) => {
           return (
-            <div>
-              <li className='div' key={item.id} >
+            <div key={item.id}>
+              <li className='div'>
                 {item.value}
                 <button
                   className='delete-button'
@@ -91,7 +88,8 @@ function App() {
                 <button onClick={() => setShowEdit(item.id)} className='edit'>✎</button>
               </li>
 
-              {showEdit == item.id ? (
+              {showEdit === item.id
+                ? (
                 <div>
                   <input className='input'
                     type='text'
@@ -104,13 +102,14 @@ function App() {
                   </button>
                   <button onClick={sth} className='delete-button'>❌</button>
                 </div>
-              ) : null }
+                  )
+                : null }
             </div>
-          );
+          )
         })}
       </ul>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
