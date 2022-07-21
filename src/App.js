@@ -8,13 +8,15 @@ function App () {
   const [showEdit, setShowEdit] = useState()
   const [updatedText, setUpdatedText] = useState('')
 
+  const [ipItems, setIpItems] = useState([])
+
   function addItem () {
     if (!newItem) {
       alert('Press enter an item.')
       return
     }
     const item = {
-      id: Math.floor(Math.random() * 2137),
+      id: [items.length],
       value: newItem
     }
 
@@ -26,7 +28,10 @@ function App () {
     const newArray = items.filter((item) => item.id !== id)
     setItems(newArray)
   }
-
+  function deleteIpItem (id) {
+    const newArray = ipItems.filter((item) => item.id !== id)
+    setIpItems(newArray)
+  }
   function editItem (id, newText) {
     const currentItem = items.filter((item) => item.id === id)
 
@@ -46,7 +51,6 @@ function App () {
     setUpdatedText('')
     setShowEdit(0)
   }
-
   function sth () {
     setShowEdit(0)
   }
@@ -56,6 +60,22 @@ function App () {
     } else {
       return (<p>{items.length} Task left</p>)
     }
+  }
+  function switchTask (id, value) {
+    const IpItem = {
+      id: [ipItems.length],
+      value: value
+    }
+    deleteItem(id)
+    setIpItems((prevList) => [...prevList, IpItem])
+  }
+  function switchIpTask (id, value) {
+    const item = {
+      id: [items.length],
+      value: value
+    }
+    deleteIpItem(id)
+    setItems((prevList) => [...prevList, item])
   }
 
   return (
@@ -72,12 +92,14 @@ function App () {
       />
 
       <button className='button' onClick={() => addItem()}>Add</button>
-
-      <ul>
+    <br />
+      <div className='container'>
+        <div className='remain'>
+          <h2>Remain</h2>
         {items.map((item) => {
           return (
-            <div key={item.id}>
-              <li className='div'>
+            <div key={item.id} className='task'>
+              <li>
                 {item.value}
                 <button
                   className='delete-button'
@@ -87,10 +109,17 @@ function App () {
                 </button>
                 <button onClick={() => setShowEdit(item.id)} className='edit'>✎</button>
               </li>
-
+              <button className='btn' onClick={() => switchTask(item.id, item.value)}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8.009 8.009 0 0 1-8 8z"/><path d="M11.293 8.707 13.586 11H8v2h5.586l-2.293 2.293 1.414 1.414L17.414 12l-4.707-4.707-1.414 1.414z"/></svg></button>
+            </div>
+          )
+        })}</div>
+        <div className='main-show'>
+          {items.map((item) => {
+            return (
+            <div key={item.id} >
               {showEdit === item.id
                 ? (
-                <div>
+                <div className='show'>
                   <input className='input'
                     type='text'
                     placeholder='Update item'
@@ -100,15 +129,34 @@ function App () {
                   <button className='button' onClick={() => editItem(item.id, updatedText)}>
                     Update
                   </button>
-                  <button onClick={sth} className='delete-button'>❌</button>
+                  <button onClick={sth} className='delete-button1'>❌</button>
+                  <br/>
                 </div>
                   )
                 : null }
             </div>
+            )
+          })}</div>
+        <div className='inprogress'>
+        <h2>Completed</h2>
+        {ipItems.map((item) => {
+          return (
+            <div key={item.id} className='task'>
+              <li>
+                {item.value}
+                <button
+                  className='delete-button'
+                  onClick={() => deleteIpItem(item.id)}
+                >
+                  ❌
+                </button>
+              </li>
+              <button className='btn' onClick={() => switchIpTask(item.id, item.value)}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8.009 8.009 0 0 1-8 8z"/><path d="m12.707 8.707-1.414-1.414L6.586 12l4.707 4.707 1.414-1.414L10.414 13H16v-2h-5.586l2.293-2.293z"/></svg></button>
+            </div>
           )
-        })}
-      </ul>
-    </div>
+        })}</div>
+        </div>
+      </div>
   )
 }
 
