@@ -1,6 +1,7 @@
-body{
+body {
   background-image: linear-gradient(to right, #b300b3, #0099cc);
 }
+
 .app {
   text-align: center;
   background-image: linear-gradient(#b300b3 #0099cc);
@@ -33,23 +34,25 @@ li {
 
   padding-top: 4px;
   padding-bottom: 4px;
-  
+
 }
-.button{
+
+.button {
   background-image: linear-gradient(to right, #b300b3, #0099cc);
   width: 75px;
   height: 30px;
   border-radius: 5px;
-  border:black;
+  border: black;
   border: 0px;
   border-style: solid;
   color: white;
   opacity: 1;
   transition: 0.7s;
-  margin-top:10px;
-  
+  margin-top: 10px;
+
 }
-.button:hover{
+
+.button:hover {
   background-image: linear-gradient(to right, #b300b3, #0099cc);
   width: 75px;
   height: 30px;
@@ -59,10 +62,12 @@ li {
   color: white;
   border: 0px;
 }
-h1{
-  color:white;
+
+h1 {
+  color: white;
 }
-.input{
+
+.input {
   height: 35px;
   width: 200px;
   border-style: solid;
@@ -78,21 +83,24 @@ h1{
   transition: 1.6s;
   font-weight: 500;
 }
-.input:focus{
+
+.input:focus {
   background-color: transparent;
   outline: 0;
   border-color: transparent;
   transition: 0.8s;
-  
+
 
 }
-li{
+
+li {
   color: wheat;
   transition: 0.8s;
   text-transform: uppercase;
-  
+
 }
-.input::placeholder{
+
+.input::placeholder {
   height: 35px;
   width: 200px;
   border-style: solid;
@@ -106,9 +114,10 @@ li{
   background-color: transparent;
   color: wheat;
   transition: 0.8s;
-  
+
 }
-.input:focus::placeholder{
+
+.input:focus::placeholder {
   height: 35px;
   width: 200px;
   border-style: solid;
@@ -122,52 +131,61 @@ li{
   background-color: transparent;
   color: transparent;
   transition: 0.8s;
-  
+
 }
-.edit{
+
+.edit {
   background-color: transparent;
   border: 0;
   font-size: 18px;
 }
-.container{
+
+.container {
   display: flex;
   justify-content: space-evenly;
 }
-.remain{
+
+.remain {
   margin: 30px;
   width: 400px;
   height: 700px;
   background-color: #0099cc;
-  overflow:scroll;
+  overflow: scroll;
 }
-.remain::-webkit-scrollbar{
+
+.remain::-webkit-scrollbar {
   display: none;
 }
-.inprogress{
+
+.inprogress {
   margin: 30px;
   width: 400px;
   height: 700px;
   background-color: #b300b3;
   overflow: hidden;
 }
-.task{
+
+.task {
   width: 300px;
-  height: 75px;
+  height: 150px;
   background-color: #4ec1e7;
   margin: auto;
 }
-.show{
+
+.show {
   width: 300px;
   height: 75px;
   background-color: transparent;
   margin-top: 20px;
   display: flex;
 }
-.main-show{
+
+.main-show {
   display: flex;
   width: 250px;
   height: 25px;
 }
+
 .delete-button1 {
   font-size: 16px;
   margin-left: 8px;
@@ -178,7 +196,8 @@ li{
   padding-bottom: 4px;
   margin-bottom: 25px;
 }
-.btn{
+
+.btn {
   background-color: transparent;
   font-size: 16px;
 }
