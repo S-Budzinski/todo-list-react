@@ -8,25 +8,35 @@ function Task(props) {
         if (props.column == "todo") {
             props.moveTodoToIP(props.index)
         } else if (props.column == "in_progress") {
-            props.moveIPtoTodo(props.index)
+            props.moveIPtoCompl(props.index)
+        } else if (props.column == "completed") {
+            props.moveCompltoIP(props.index)
         }
     }
-
+    let button;
+    if (props.column == "todo"){
+        button = "➡"
+    }else if (props.column == "in_progress"){
+        button = "➡"
+    }else if (props.column == "completed") {
+        button = "⬅"
+    }
     return (
-        <div className="task">
+        <div className="btn">
             <h1> {props.item.text} </h1>
+            {props.column == "in_progress" ? <button className="edit" onClick={() => {props.moveIPtoTodo(props.index)}}>⬅</button>: null}
             <button
                 className="edit"
                 onClick={() => { callMove() }}
             >
-                ==X
+                {button}
             </button>
-
+            
             <button
                 className="edit"
                 onClick={() => { props.setShowEdit(props.item.id) }}
             >
-                EDIT ME
+                🖊
             </button>
 
             <button
